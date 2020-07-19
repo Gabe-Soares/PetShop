@@ -1,0 +1,7 @@
+use petshop
+db.createCollection("users")
+db.users.insert({"user": "admin", "password": "12345", "type": "admin"})
+db.users.createIndex({"user" : 1}, { unique : true })
+db.createCollection("services")
+db.services.insert({"service": "Banho e/ou Tosa", "description": "lorem ipsum", "availability": "business-day"})
+db.services.createIndex({"service" : 1}, { unique : true })
