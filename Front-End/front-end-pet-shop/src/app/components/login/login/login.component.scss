@@ -1,0 +1,133 @@
+.clopen{
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: 1 !important;
+    display: inline-block;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.clopen.text{
+    left: auto;
+    bottom: auto;
+    top: 25px;
+    right: 25px;
+    height: 50px;
+    width: 50px;
+    font-size: 0;
+}
+.clopen:before, .clopen:after{
+    content: '';
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    height: 2px;
+    background: #fff;
+    width: 50%;
+    transition: all .25s;
+    opacity: 0;	
+}
+.clopen.text:before{
+    transform: rotate(45deg);
+    opacity: 1;
+
+}
+.clopen.text:after{
+    transform: rotate(-45deg);
+    opacity: 1;
+
+}
+.body{
+    background-image: url("../../../../assets/images/backgroundLogin.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    padding: 5px;
+    height: 100%;
+}
+h1.head-title {
+    position: relative;
+    color: #c44741;
+    text-transform: uppercase;
+}
+h1.head-title:before {
+    content: '';
+    position: absolute;
+    left: -50px;
+    height: 100%;
+    width: 5px;
+    background: #c44741;
+}
+button{
+    height: 45px;
+    line-height: 39px;
+    width: 50%;
+    background: #303030;
+    transition: all .25s;
+    border: none;
+    border: solid 3px #303030;
+    color: #fff;
+    font-size: 20px;
+    margin: 50px auto !important;
+    display: block;
+    color: #fff !important;
+    box-shadow: 0 0 4px rgba(0,0,0,0.14), 0 4px 8px rgba(0,0,0,0.28);
+}
+button:focus{
+    outline: none;
+}
+button:hover{
+    background: transparent;
+    color: #303030 !important;
+    width: 55%;
+    box-shadow: none;
+    border: solid 3px #c44741;
+}
+#int-form{
+    max-width: 500px;
+    margin: 100px auto;
+    box-shadow: 0 0 4px rgba(0,0,0,0.14), 0 4px 8px rgba(0,0,0,0.28);
+    position: relative;
+}
+.login{
+    background: #fff;
+    padding: 50px;
+    box-shadow: 0 0 4px rgba(200,200,200,0.14), 0 4px 8px rgba(200,200,200,0.28);
+}
+#passwordInput{
+    height: 0;
+    margin-top: 0;
+}
+mat-form-field{
+    display: block;
+}
+.inputsLogin{
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+
+#overlay {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(200,200,200,0.1);
+    z-index: 2;
+  }

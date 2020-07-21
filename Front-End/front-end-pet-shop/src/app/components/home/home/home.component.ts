@@ -7,12 +7,10 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  myElement: HTMLElement = document.getElementById("sideNav");
-  @Output() openMenu = new EventEmitter();
+  
   constructor() { }
 
   ngOnInit(): void {
-    console.log(document.getElementById("sideNav"))
   }
 
 }

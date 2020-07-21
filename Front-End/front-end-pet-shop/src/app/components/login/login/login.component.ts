@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  hide: boolean = true;
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
+    
   }
 
 }

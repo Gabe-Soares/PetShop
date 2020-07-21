@@ -12,8 +12,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$front-end-pet-shop-primary: mat-palette($mat-indigo);
-$front-end-pet-shop-accent: mat-palette($mat-pink, A200, A100, A400);
+$front-end-pet-shop-primary: mat-palette($mat-petshop);
+$front-end-pet-shop-accent: mat-palette($mat-petshop, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $front-end-pet-shop-warn: mat-palette($mat-red);
