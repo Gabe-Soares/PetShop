@@ -131,3 +131,9 @@ mat-form-field{
     background-color: rgba(200,200,200,0.1);
     z-index: 2;
   }
+  .mat-input-element{
+      width: auto;
+  }
+  .error-snackbar {
+    background-color: fuchsia !important;
+  }
