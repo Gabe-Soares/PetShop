@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
         if(!auth){
           this.openSnackBar('Invalid user', 'close', false);
         }else{
-          console.log("ASD")
+          this.authService.setIsLogIn(true);
+        }
+        if(this.authService.getIsLogIn()){
           this.router.navigate(['/home']);
         }
       });
