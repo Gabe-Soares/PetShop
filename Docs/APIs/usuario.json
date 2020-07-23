@@ -1,0 +1,12 @@
+{
+	"API": "/users",
+	"EndPoints": [{
+		"EndPoint": "/validate/",
+		"Description": "EndPoint for validating the combination of user and password. Used for authentication, e.g..",
+		"Body_Example": {
+			"user": "username",
+			"password": "password"
+		},
+		"Return": "Boolean. Return if the user and password are valid or not."
+	}]
+}

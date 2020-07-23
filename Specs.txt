@@ -1,0 +1,5 @@
+- Vai ter usuários e tipos de usuários
+- Usuários clientes vão ter seus Pets cadastrados
+- Página de solicitação de serviços (agendamento)
+	* Api devolver os horários do dia
+- Usuário Admin vai controlar a disponibilidade e a lista dos serviços
