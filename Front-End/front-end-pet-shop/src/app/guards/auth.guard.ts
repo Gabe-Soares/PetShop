@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate {
       if(this.authService.getIsLogIn()){
         return true;
       }else{
-        alert('You are not allowed to view this page');
         this.router.navigateByUrl('');
         return false;
       }

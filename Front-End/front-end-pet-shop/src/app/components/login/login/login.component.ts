@@ -23,8 +23,6 @@ export class LoginComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private router: Router
     ) {}
-
-
   ngOnInit(): void {
      this.formClear();
   }
