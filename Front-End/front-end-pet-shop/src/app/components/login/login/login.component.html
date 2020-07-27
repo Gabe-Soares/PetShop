@@ -7,7 +7,7 @@
                   <div class="inputsLogin">
                         <mat-form-field appearance="" style="margin-bottom: 1rem;">
                           <mat-label >Username</mat-label>
-                          <input matInput formControlName="user">
+                          <input matInput formControlName="user" autofocus>
                           <mat-error *ngIf="loginForm.controls['user'].errors">
                             Username <strong>invalid</strong>
                           </mat-error>

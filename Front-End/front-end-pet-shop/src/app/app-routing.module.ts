@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home/home.component';
 import { LoginComponent } from './components/login/login/login.component';
+import { AddPetComponent } from './components/pets/add-pet/add-pet.component';
+import { PetsComponent } from './components/pets/pets/pets.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -12,7 +14,18 @@ const routes: Routes = [
   {
     path: 'home', 
     component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'pets',
+        pathMatch: 'full'
+      },
+      {
+        path: 'pets',
+        component: PetsComponent
+      }
+    ]
   }
 ];
 
