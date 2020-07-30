@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "73743bd3-89a7-42bb-8bfa-7c831498b426",
+		"name": "PetShop APIs",
+		"description": "Postman collection for testing and validating the Express.js APIs for the PetShop project. Project with purposes of studying and generate portfolio only.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/users/",
+			"item": [
+				{
+					"name": "POST /validate/ - assert valid",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"admin\",\r\n    \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/validate/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"validate",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that validates the user and password.\r\nEndpoint used for login, e.g.."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /validate/ - assert invalid",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"invalid\",\r\n    \"password\": \"invalid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/validate/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"validate",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that validates the user and password.\r\nEndpoint used for login, e.g.."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /create/ - common user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"new_user\": \"gabriel\",\r\n    \"new_password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/create/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"create",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that creates new user.\r\nThis test is for validating the common user creation."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /create/ - special user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"new_user\": \"matheus\",\r\n    \"new_password\": \"12345\",\r\n    \"new_type\": \"colaborator\",\r\n    \"validator_user\": \"admin\",\r\n    \"validator_password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/create/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"create",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that creates new user.\r\nThis test is for validating the special (admin or other special types) user creation."
+					},
+					"response": []
+				}
+			],
+			"description": "Requests related to the /users/ endpoint.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4adc505d-f7af-4bf8-9b53-25f4b18cf691",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4329fb75-da23-4c28-a99a-4e8bccde2b42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "de5159d4-99b2-45ac-8ecc-ebbf870a1797",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "107cfc80-722a-45c0-bfe2-f68821f25918",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -7,6 +7,22 @@
 			"user": "username",
 			"password": "password"
 		},
-		"Return": "Boolean. Return if the user and password are valid or not."
+		"Return": "Valid user's data (except for sensible data). Return if the user and password are valid, if they aren't, then the status code should indicate."
+	},
+	{
+		"EndPoint": "/create/",
+		"Description": "EndPoint for creating new user.",
+		"Body_Example_Common_User": {
+			"new_user": "new_users_username",
+			"new_password": "new_users_password"
+		},
+		"Body_Example_Special_User": {
+			"new_user": "new_users_username",
+			"new_password": "new_users_password",
+			"new_type": "valid_special_type",
+			"validator_user": "admin_type_user_username",
+			"validator_password": "admin_type_user_password"
+		},
+		"Return": "Null. The status code should indicate if the new user was created or not, and if not, why it wasn't. If creation was unsuccessful, there may be a JSON return indicating the error."
 	}]
 }

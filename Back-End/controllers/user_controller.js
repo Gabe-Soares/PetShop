@@ -6,7 +6,7 @@ const url = "mongodb://localhost:27017/";
 let controller = {};
 
 controller.validateUser = async function(u, p){
-    var valid_user = false;
+    let valid_user;
 
     // Connect to the db
     const db = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -19,7 +19,7 @@ controller.validateUser = async function(u, p){
     try{
             const db_petshop = db.db("petshop");
             let coll = db_petshop.collection("users");
-            let res = await coll.findOne({user: u, password: p})
+            var res = await coll.findOne({user: u, password: p}, {projection: {"_id": false, "password": false}})
                 .catch(err => { db.close(); console.log(err); });
 
                 if(res != null){
@@ -27,6 +27,7 @@ controller.validateUser = async function(u, p){
                     console.log("User '" + u + "' is valid.");
                 }
                 else{
+                    valid_user = false;
                     console.log("User '" + u + "' is invalid.");
                 }
     }
@@ -36,8 +37,38 @@ controller.validateUser = async function(u, p){
     finally{
         db.close();
     }
-    
-    return valid_user;
+
+    return {valid_user, user: res};
+}
+
+controller.createUser = async function(u, p, user_type){
+    let new_user = {user: u, password: p, type: user_type};
+    let is_created = false;
+    let error_message;
+
+    // Connect to the db
+    const db = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+        .catch(err => { console.log(err); });
+        
+    if (!db) {
+        throw "Erro - objeto de conexão nulo.";
+    }
+
+    try{
+            const db_petshop = db.db("petshop");
+            let coll = db_petshop.collection("users");
+            await coll.insertOne(new_user)
+                .then(result => {console.log("Successfully created the user " + u + "."); is_created = true;})
+                .catch(err => { db.close(); console.log(err); is_created = false; error_message = err});
+    }
+    catch(err){
+        console.log(err);
+    }
+    finally{
+        db.close();
+    }
+
+    return {is_created, error_message};
 }
 
 module.exports = controller;
