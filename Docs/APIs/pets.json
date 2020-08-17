@@ -1,0 +1,17 @@
+{
+	"API": "/pets",
+	"EndPoints": [{
+		"EndPoint": "/add/",
+		"Description": "EndPoint for adding new pet to the MongoDB Database",
+		"Body_Example": {
+			"name": "pets_name", 
+			"owner": "owner_username", 
+			"species": "pet_species_dog_cat_etc", 
+			"race": "pets_race", 
+			"age": "pets_age", 
+			"obs": "Pure text with observations about the pet; conditions; diseases; etc."
+		},
+		"Return": "Null. Status code should indicate if operation was successfull (200), or if it wasn't (406 or 500), in this case, the body will bring error message.",
+		"Important": "Owner's user must exists in the database, otherwise status code must be 406 (not acceptable) and the pet won't be added."
+	}]
+}

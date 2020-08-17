@@ -160,6 +160,101 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "/pets/",
+			"item": [
+				{
+					"name": "POST /add/ - assert valid",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Odie\", \r\n    \"owner\": \"admin\", \r\n    \"species\": \"dog\", \r\n    \"race\": \"daschund\", \r\n    \"age\": \"13\", \r\n    \"obs\": \"overweight; heart murmur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/add/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"add",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /add/ - assert invalid",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Odie\", \r\n    \"owner\": \"invalid_user\", \r\n    \"species\": \"dog\", \r\n    \"race\": \"daschund\", \r\n    \"age\": \"13\", \r\n    \"obs\": \"overweight; heart murmur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/add/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"add",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				}
+			],
+			"description": "Requests related to the /pets/ endpoint.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "82318ccb-74f2-4e76-a989-740320223e9f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1d2e5e3-6d48-4e75-b4f3-2590e36452ea",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
