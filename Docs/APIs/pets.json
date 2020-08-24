@@ -11,7 +11,7 @@
 			"age": "pets_age", 
 			"obs": "Pure text with observations about the pet; conditions; diseases; etc."
 		},
-		"Return": "Null. Status code should indicate if operation was successfull (200), or if it wasn't (406 or 500), in this case, the body will bring error message.",
+		"Return": "Null. Status code should indicate if operation was successfull (200), or if it wasn't (406 or 500), in this case, the body will bring the error message.",
 		"Important": "Owner's user must exist in the database, otherwise status code must be 406 (not acceptable) and the pet won't be added."
 	},
 	{
@@ -21,7 +21,22 @@
 			"name": "pets_name", 
 			"owner": "owner_username"
 		},
-		"Return": "Null. Status code should indicate if operation was successfull (200), or if it wasn't (406 or 500), in this case, the body will bring error message.",
+		"Return": "Null. Status code should indicate if operation was successfull (200), or if it wasn't (406 or 500), in this case, the body will bring the error message.",
 		"Important": "Owner's user must exist in the database, otherwise status code must be 406 (not acceptable) and the pet won't be removed."
+	},
+	{
+		"EndPoint": "/update/",
+		"Description": "EndPoint for updating pet data of the MongoDB Database",
+		"Body_Example": {
+			"pet_name_old": "pets_name_in_database", 
+			"name": "pets_new_name", 
+			"owner": "owner_username", 
+			"species": "pet_species_dog_cat_etc", 
+			"race": "pets_race", 
+			"age": "pets_age", 
+			"obs": "Pure text with observations about the pet; conditions; diseases; etc."
+		},
+		"Return": "Null. Status code should indicate if operation was successfull (200), or if it wasn't (406 or 500), in this case, the body will bring the error message.",
+		"Important": "Owner's user must exist in the database, otherwise status code must be 406 (not acceptable) and the pet won't be updated. Also, the 'pet_name_old' must be the pet name in the database, it's using it that the back-end will find the document to update, whilst 'name' can change with a new name for the pet."
 	}]
 }

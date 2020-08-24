@@ -68,5 +68,37 @@ module.exports = (function() {
 
     });
 
+    // API Route responsible for updating pet.
+    router.post('/update', async function(req, res) {
+        let pet_data = helper.paramsToJson(req.body);       // Helper to manipulate data and format it as it's needed.
+
+        let user_exists = await users_controller.validateExistance(req.body.owner);
+        
+        // Case owner doesn't exists.
+        if(!user_exists.valid_user){
+            res.status(406)
+                .json({ error: "Owner username does not exists."})
+                .end();
+
+            console.log("Invalid owner username, pet wasn't updated.");
+        }
+        else{
+            let result = await controller.updatePet(pet_data, req.body.pet_name_old);     // Controller called to update the pet to the MongoDB Database.
+    
+            // Case the pet was successfully added.
+            if(result.is_updated){
+                res.status(200)
+                    .end();
+            }
+            // Case the pet wasn't updated, because of any error.
+            else{
+                res.status(500)
+                    .json({ mongo_error: result.error_message})
+                    .end();
+            }
+        }
+
+    });
+
     return router;
 })();
