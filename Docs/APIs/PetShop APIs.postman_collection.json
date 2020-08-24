@@ -229,6 +229,72 @@
 						"description": "Request for testing the endpoint that adds new pet."
 					},
 					"response": []
+				},
+				{
+					"name": "POST /remove/ - assert removed",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Odie\", \r\n    \"owner\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/remove/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"remove",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /remove/ - assert invalid",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Odie\", \r\n    \"owner\": \"invalid_user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/remove/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"remove",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
 				}
 			],
 			"description": "Requests related to the /pets/ endpoint.",
