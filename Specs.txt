@@ -1,5 +1,5 @@
-- Vai ter usuários e tipos de usuários
-- Usuários clientes vão ter seus Pets cadastrados
-- Página de solicitação de serviços (agendamento)
-	* Api devolver os horários do dia
-- Usuário Admin vai controlar a disponibilidade e a lista dos serviços
+- Different user permissions.
+- Client user's can addd their pets.
+- There must be a page to request/schedule services (like bath, exam, etc).
+	* API must return ady schedule.
+- Admin user must control the availability of the services, as the list of services that exists.
