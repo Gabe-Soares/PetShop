@@ -1,10 +1,10 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators  } from '@angular/forms';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserAuth } from '../../models/UserAuthModel';
 
 import { LoginService } from '../login.service';
-import { Users } from '../../shared/models/Users';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import { Users } from '../../shared/models/Users';
 })
 export class LoginComponent implements OnInit {
   
-  user: Users;
+  user: UserAuth;
   hide: boolean = true;
   loginForm: FormGroup;
 
@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
     private router: Router
     ) {}
   ngOnInit(): void {
-     this.formClear();
+    this.authService.setUser(null)
+    this.formClear();
+    console.log(this.authService.getUser())
   }
   ngAfterViewInit() {
     
@@ -33,14 +35,16 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){
       this.authService.validateUser(this.loginForm.value)
       .subscribe(auth => {
-        if(!auth){
-          this.openSnackBar('Invalid user', 'close', false);
-        }else{
-          this.authService.setIsLogIn(true);
+        if(auth){
+          this.authService.setUser(auth)
         }
-        if(this.authService.getIsLogIn()){
+        if(this.authService.getUser()){
+          console.log(this.authService.getUser())
           this.router.navigate(['/home']);
         }
+      }, error => {
+        if(error.status === 401)
+          this.openSnackBar('Invalid user', 'close', false);
       });
     }
   }
