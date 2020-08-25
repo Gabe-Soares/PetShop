@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           this.authService.setUser(auth)
         }
         if(this.authService.getUser()){
-          console.log(this.authService.getUser())
+          this.authService.setUser(this.authService.getUser())
           this.router.navigate(['/home']);
         }
       }, error => {

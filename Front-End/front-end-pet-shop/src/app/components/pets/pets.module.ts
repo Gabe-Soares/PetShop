@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
@@ -11,15 +11,14 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
 
-import { AddPetComponent } from './add-pet/add-pet.component';
 import { PetsComponent } from './pets/pets.component';
 import { DialogAddPetComponent } from './dialogs/dialog-add-pet/dialog-add-pet.component';
-import { ListMyPetsComponent } from './list-my-pets/list-my-pets.component';
+import { PetsService } from './pets.service';
 
 
 
 @NgModule({
-  declarations: [AddPetComponent, PetsComponent, DialogAddPetComponent, ListMyPetsComponent],
+  declarations: [PetsComponent, DialogAddPetComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -30,10 +29,14 @@ import { ListMyPetsComponent } from './list-my-pets/list-my-pets.component';
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ReactiveFormsModule
   ],
   exports: [
     PetsComponent
+  ],
+  providers: [
+    PetsService
   ]
 })
 export class PetsModule { }

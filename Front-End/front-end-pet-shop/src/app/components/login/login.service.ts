@@ -11,11 +11,11 @@ const URLDEFAULT = "http://localhost:3000/users";
   providedIn: 'root'
 })
 export class LoginService {
-  user;
+  user: UserAuth;
   isLogIn: boolean = false;
   constructor(private http: HttpClient) { }
 
-  public validateUser(user): Observable<UserAuth>{
+  public validateUser(user){
     return this.http.post<UserAuth>(`${URLDEFAULT}/validate`, user);
   }
   public getIsLogIn(){
@@ -28,7 +28,6 @@ export class LoginService {
     return this.user;
   }
   public setUser(user){
-    console.log(user)
     this.user = user;
   }
 }
