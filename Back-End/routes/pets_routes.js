@@ -100,5 +100,44 @@ module.exports = (function() {
 
     });
 
+    // API Route responsible for retrieving list of pets.
+    router.get('/search', async function(req, res) {
+        let owner = req.query.user;
+
+        if(owner != undefined && owner != ""){
+            let user_exists = await users_controller.validateExistance(owner);
+            
+            // Case owner doesn't exists.
+            if(!user_exists.valid_user){
+                res.status(406)
+                    .json({ error: "Owner username does not exists."})
+                    .end();
+    
+                console.log("Invalid owner username, list of pets not retrieved.");
+            }
+            else{
+                let result = await controller.getPets(owner);     // Controller called to get the list of pets for that owner.
+        
+                // Case the list was successfully retrieved.
+                if(result.is_listed){
+                    res.status(200)
+                        .json(result.list)
+                        .end();
+                }
+                // Case the list wasn't retrieved, because of any error.
+                else{
+                    res.status(500)
+                        .json({ Error: result.error_message})
+                        .end();
+                }
+            }
+        }
+        else{
+            res.status(406)
+                .json({ Error: "User parameter missing or invalid."})
+                .end();
+        }
+    });
+
     return router;
 })();

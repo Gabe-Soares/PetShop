@@ -2,6 +2,7 @@
 	"API": "/users",
 	"EndPoints": [{
 		"EndPoint": "/validate/",
+		"Method": "POST",
 		"Description": "EndPoint for validating the combination of user and password. Used for authentication, e.g..",
 		"Body_Example": {
 			"user": "username",
@@ -11,6 +12,7 @@
 	},
 	{
 		"EndPoint": "/create/",
+		"Method": "POST",
 		"Description": "EndPoint for creating new user.",
 		"Body_Example_Common_User": {
 			"new_user": "new_users_username",
