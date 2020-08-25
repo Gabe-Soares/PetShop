@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { UserAuth } from '../models/UserAuthModel';
+import { UserAuth } from '../../models/UserAuthModel';
 
 const URLDEFAULT = "http://localhost:3000/users";
 

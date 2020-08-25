@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/components/login/login.service';
-import { Pet } from 'src/app/components/models/PetModel';
+import { Pet } from 'src/app/models/PetModel';
 import { PetsService } from '../../pets.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class DialogAddPetComponent implements OnInit {
   createFormAddPets(){
     this.formAddPets = this.fb.group({
       name: ['', Validators.required],
-      owner: '',
+      owner: this.useService.user.user,
       species: ['', Validators.required],
       race: ['', Validators.required],
       age: ['', Validators.required],

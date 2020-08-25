@@ -1,9 +1,9 @@
 export interface Pet{
     Id: number;
     Name: string;
-    NickName: string;
-    Age: number;
-    Type: string;
-    Breed: string;
+    Age: string;
+    Obs: string;
+    Race: string;
+    Species: string;
     Owner: string;
 }

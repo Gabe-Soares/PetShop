@@ -5,27 +5,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { Pet } from '../../models/PetModel';
+import { Pet } from '../../../models/PetModel';
+import { LoginService } from '../../login/login.service';
 import { DialogAddPetComponent } from '../dialogs/dialog-add-pet/dialog-add-pet.component';
+import { DialogUpdatePetComponent } from '../dialogs/dialog-update-pet/dialog-update-pet.component';
+import { PetsService } from '../pets.service';
 
-
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
 
 @Component({
   selector: 'app-pets',
@@ -34,7 +19,7 @@ const NAMES: string[] = [
 })
 export class PetsComponent implements OnInit {
 
-  displayedColumns: string[] = ['Id', 'Name', 'NickName', 'Age', 'Type', 'Breed'];
+  displayedColumns: string[] = ['Name', 'Specie', 'Age', 'Race', 'Obs', 'Options'];
   dataSource: MatTableDataSource<Pet>;
   subcription: Subscription[] = [];
 
@@ -42,20 +27,29 @@ export class PetsComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(public dialog: MatDialog, 
-    private _snackBar: MatSnackBar) {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    private _snackBar: MatSnackBar,
+    private petsService: PetsService,
+    private userService: LoginService) {
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.initTable();
   }
   ngOnDestroy(): void {
     this.subcription.forEach(e => e.unsubscribe())
+  }
+
+  initTable(){
+    this.dataSource = new MatTableDataSource();
+    this.subcription.push(
+      this.petsService.getAllPetsOwner(this.userService.user.user)
+      .subscribe(resp => {
+        this.dataSource = new MatTableDataSource(resp);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log(resp)
+      })
+    )
   }
 
   openDialogAddPet(){
@@ -63,9 +57,33 @@ export class PetsComponent implements OnInit {
 
     this.subcription.push(dialogRef.afterClosed().subscribe(result => {
       if(!result){
-        this.openSnackBar('Pet not registred', 'close', result)
+        this.openSnackBar('Pet not registred', 'close', result);
       }else{
-        this.openSnackBar('Pet successfully registered', 'close', result)
+        this.openSnackBar('Pet successfully registered', 'close', result);
+        this.initTable();
+      }
+    }));
+  }
+
+  openDialogUpdatePet(row){
+    console.log(row);
+    const dialogRef = this.dialog.open(DialogUpdatePetComponent, {
+      data: {
+        Name: row.name,
+        Species: row.species,
+        Race: row.race,
+        Age: row.age,
+        Obs: row.obs,
+        Owner: this.userService.user.user
+      }
+    });
+
+    this.subcription.push(dialogRef.afterClosed().subscribe(result => {
+      if(!result){
+        this.openSnackBar('Pet not registred', 'close', result);
+      }else{
+        this.openSnackBar('Pet successfully registered', 'close', result);
+        this.initTable();
       }
     }));
   }
@@ -87,20 +105,4 @@ export class PetsComponent implements OnInit {
       });
     }
   }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): Pet {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    Id: id,
-    Name: name,
-    NickName: Math.round(Math.random() * 100).toString(),
-    Age: Math.round(Math.random() * (NAMES.length - 1)),
-    Type: Math.round(Math.random() * 100).toString(),
-    Breed: Math.round(Math.random() * 100).toString(),
-    Owner: ''
-  };
 }

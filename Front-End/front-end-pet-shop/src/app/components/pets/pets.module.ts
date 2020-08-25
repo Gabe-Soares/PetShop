@@ -14,11 +14,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { PetsComponent } from './pets/pets.component';
 import { DialogAddPetComponent } from './dialogs/dialog-add-pet/dialog-add-pet.component';
 import { PetsService } from './pets.service';
+import { DialogUpdatePetComponent } from './dialogs/dialog-update-pet/dialog-update-pet.component';
 
 
 
 @NgModule({
-  declarations: [PetsComponent, DialogAddPetComponent],
+  declarations: [PetsComponent, DialogAddPetComponent, DialogUpdatePetComponent],
   imports: [
     CommonModule,
     MatButtonModule,

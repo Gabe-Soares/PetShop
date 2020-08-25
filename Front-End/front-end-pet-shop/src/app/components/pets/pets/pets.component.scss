@@ -16,3 +16,12 @@ span{
 table.mat-table{
     width: 100%;
 }
+
+.material-icons{
+    cursor: pointer;
+    margin: 0.4rem;
+    transition: all .3s;
+}
+.material-icons:hover{
+    transform: scale(1.1);
+}
