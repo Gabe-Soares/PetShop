@@ -229,6 +229,237 @@
 						"description": "Request for testing the endpoint that adds new pet."
 					},
 					"response": []
+				},
+				{
+					"name": "POST /remove/ - assert removed",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Odie\", \r\n    \"owner\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/remove/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"remove",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /remove/ - assert invalid",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Odie\", \r\n    \"owner\": \"invalid_user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/remove/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"remove",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /remove/ - assert invalid (Pet invalid)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Odie\", \r\n    \"owner\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/remove/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"remove",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /update/ - assert updated",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pet_name_old\": \"Odie\", \r\n    \"name\": \"Odie\", \r\n    \"owner\": \"admin\", \r\n    \"species\": \"dog\", \r\n    \"race\": \"daschund\", \r\n    \"age\": \"11\", \r\n    \"obs\": \"overweight; heart murmur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/update/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"update",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /update/ - assert updated (rename Pet)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pet_name_old\": \"Odie\", \r\n    \"name\": \"Rex\", \r\n    \"owner\": \"admin\", \r\n    \"species\": \"dog\", \r\n    \"race\": \"daschund\", \r\n    \"age\": \"11\", \r\n    \"obs\": \"overweight; heart murmur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/update/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"update",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /update/ - assert invalid (Owner invalid)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pet_name_old\": \"Rex\", \r\n    \"name\": \"Rex\", \r\n    \"owner\": \"invalid_user\", \r\n    \"species\": \"dog\", \r\n    \"race\": \"daschund\", \r\n    \"age\": \"11\", \r\n    \"obs\": \"overweight; heart murmur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/update/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"update",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /update/ - assert invalid (Pet invalid)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pet_name_old\": \"Odie\", \r\n    \"name\": \"Rex\", \r\n    \"owner\": \"admin\", \r\n    \"species\": \"dog\", \r\n    \"race\": \"daschund\", \r\n    \"age\": \"11\", \r\n    \"obs\": \"overweight; heart murmur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/pets/update/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"update",
+								""
+							]
+						},
+						"description": "Request for testing the endpoint that adds new pet."
+					},
+					"response": []
 				}
 			],
 			"description": "Requests related to the /pets/ endpoint.",
