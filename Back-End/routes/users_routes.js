@@ -16,7 +16,7 @@ module.exports = (function() {
         }
         else{
             // Case user is invalid.
-            if(is_valid.valid_user == false){
+            if(!is_valid.valid_user){
                 res.status(401)
                     .end();
             }
@@ -63,7 +63,7 @@ module.exports = (function() {
                 // Case the new user wasn't created, because of any error.
                 else{
                     res.status(500)
-                        .json({ mongo_error: is_success.error_message})
+                        .json({ Error: is_success.error_message})
                         .end();
                 }
             }
@@ -79,6 +79,93 @@ module.exports = (function() {
             res.status(406)
                 .json({"error": "New user type is invalid."})
                 .end();
+        }
+    });
+
+    // API Route responsible for deleting a user from the database.
+    router.post('/delete', async function(req, res) {
+        let permission = false;         // Variable to control permission for the deletion.
+        let user = req.body.user;
+        let deleter = req.body.deleter;
+        let deleter_password = req.body.deleter_password;
+
+        // Checking if the paramaters exists.
+        if(user == undefined || deleter == undefined || deleter_password == undefined || user == "" || deleter == "" || deleter_password == ""){
+            res.status(400)
+                .json({Error: "Invalid or non existant parameters."})
+                .end();
+
+            return;
+        }
+
+        let user_exists = await controller.validateExistance(user);                 // Checking if the user thats gonna be deleted exists.
+
+        // Case the deleter isn't deleting it's own account.
+        if(user != deleter){
+            let deleter_exists = await controller.validateExistance(deleter);       // Checking if the user thats deleting exists.
+            
+            if(user_exists.valid_user && deleter_exists.valid_user){
+                // Checking if the deleter is a admin.
+                let deleter_type = await controller.getType(deleter);  
+
+                if(deleter_type=="admin"){
+                    permission = true;
+                }
+            }
+            else{
+                res.status(400)
+                    .json({Error: "Invalid user. It doesn't exists."})
+                    .end();
+
+                return;
+            }
+        }
+        // Case the deleter is deleting it's own account.
+        else{
+            if(user_exists.valid_user){
+                 permission = true;
+            }
+            else{
+                res.status(400)
+                    .json({Error: "Invalid user. It doesn't exists."})
+                    .end();
+
+                return;
+            }
+        }
+
+        // Checking if the user may delete the account.
+        if(permission){
+            let is_valid = await controller.validateUser(deleter, deleter_password);
+
+            // Case Deleter is validated.
+            if(is_valid.valid_user){
+                let is_deleted = await controller.deleteUser(user);
+
+                // Checking if the user was deleted.
+                if(is_deleted.success){
+                    res.status(200)
+                        .end();
+                }
+                else{
+                    res.status(500)
+                        .json({Error: is_deleted.error_message})
+                        .end();
+                }
+            }
+            else{
+                res.status(401)
+                    .json({Error: "Deleter user not authorized."})
+                    .end();
+            }
+        }
+        else{
+            console.log("Permission to delete account denied. Operation wasn't completed.");
+
+            res.status(403)
+                .json({Error: "Permission denied."})
+                .end();
+
         }
     });
 

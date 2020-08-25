@@ -82,7 +82,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"new_user\": \"gabriel\",\r\n    \"new_password\": \"12345\"\r\n}",
+							"raw": "{\r\n    \"new_user\": \"matheus\",\r\n    \"new_password\": \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -112,7 +112,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"new_user\": \"matheus\",\r\n    \"new_password\": \"12345\",\r\n    \"new_type\": \"colaborator\",\r\n    \"validator_user\": \"admin\",\r\n    \"validator_password\": \"12345\"\r\n}",
+							"raw": "{\r\n    \"new_user\": \"gabriel\",\r\n    \"new_password\": \"12345\",\r\n    \"new_type\": \"colaborator\",\r\n    \"validator_user\": \"admin\",\r\n    \"validator_password\": \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -132,6 +132,126 @@
 							]
 						},
 						"description": "Request for testing the endpoint that creates new user.\r\nThis test is for validating the special (admin or other special types) user creation."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /delete/ - assert deleted (another account)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"gabriel\",\r\n    \"deleter\": \"admin\",\r\n    \"deleter_password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/delete/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"delete",
+								""
+							]
+						},
+						"description": "Endpoint for deletting acconts for the /users/ route."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /delete/ - assert deleted (same account)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"matheus\",\r\n    \"deleter\": \"matheus\",\r\n    \"deleter_password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/delete/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"delete",
+								""
+							]
+						},
+						"description": "Endpoint for deletting acconts for the /users/ route."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /delete/ - assert invalid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"gabriel\",\r\n    \"deleter\": \"invalid_user\",\r\n    \"deleter_password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/delete/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"delete",
+								""
+							]
+						},
+						"description": "Endpoint for deletting acconts for the /users/ route."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /delete/ - assert not authorized",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"gabriel\",\r\n    \"deleter\": \"matheus\",\r\n    \"deleter_password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/delete/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"delete",
+								""
+							]
+						},
+						"description": "Endpoint for deletting acconts for the /users/ route."
 					},
 					"response": []
 				}

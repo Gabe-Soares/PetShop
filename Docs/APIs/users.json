@@ -26,5 +26,17 @@
 			"validator_password": "admin_type_user_password"
 		},
 		"Return": "Null. The status code should indicate if the new user was created or not, and if not, why it wasn't. If creation was unsuccessful, there may be a JSON return indicating the error."
+	},
+	{
+		"EndPoint": "/delete/",
+		"Method": "POST",
+		"Description": "EndPoint for deleting users accounts.",
+		"Body_Example": {
+			"user": "deleting_users_username",
+			"deleter": "deleter_users_username",
+			"deleter_password": "deleter_users_password"
+		},
+		"Return": "Null. The status code should indicate if the user was deleted or not, and if not, why it wasn't. If exclusion was unsuccessful, there may be a JSON return indicating the error.",
+		"Important": "Operation will only be allowed if the user's permission is 'admin', or if the user is deleting it's own account, in wich case, there must be redundancy in the parameters 'user' and 'deleter', but either must exist."
 	}]
 }
