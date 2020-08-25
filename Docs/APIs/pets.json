@@ -2,6 +2,7 @@
 	"API": "/pets",
 	"EndPoints": [{
 		"EndPoint": "/add/",
+		"Method": "POST",
 		"Description": "EndPoint for adding new pet to the MongoDB Database",
 		"Body_Example": {
 			"name": "pets_name", 
@@ -16,6 +17,7 @@
 	},
 	{
 		"EndPoint": "/remove/",
+		"Method": "POST",
 		"Description": "EndPoint for removing pet of the MongoDB Database",
 		"Body_Example": {
 			"name": "pets_name", 
@@ -26,6 +28,7 @@
 	},
 	{
 		"EndPoint": "/update/",
+		"Method": "POST",
 		"Description": "EndPoint for updating pet data of the MongoDB Database",
 		"Body_Example": {
 			"pet_name_old": "pets_name_in_database", 
@@ -38,5 +41,15 @@
 		},
 		"Return": "Null. Status code should indicate if operation was successfull (200), or if it wasn't (406 or 500), in this case, the body will bring the error message.",
 		"Important": "Owner's user must exist in the database, otherwise status code must be 406 (not acceptable) and the pet won't be updated. Also, the 'pet_name_old' must be the pet name in the database, it's using it that the back-end will find the document to update, whilst 'name' can change with a new name for the pet."
+	},
+	{
+		"EndPoint": "/search?",
+		"Method": "GET",
+		"Parameters": {
+			"user": "Owners_user"
+		},
+		"Description": "EndPoint for retrieving a list of pets that user's owns.",
+		"Return": "List of JSON with the pets data. Status code should indicate if operation was successfull (200), or if it wasn't (406 or 500), in this case, the body will bring the error message.",
+		"Important": "Owner's user must exist in the database, otherwise status code must be 406 (not acceptable). Also, the 'user' parameter must exists, otherwise status code must be 406 (not acceptable)."
 	}]
 }

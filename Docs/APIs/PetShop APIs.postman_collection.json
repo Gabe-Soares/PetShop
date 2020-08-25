@@ -460,6 +460,115 @@
 						"description": "Request for testing the endpoint that adds new pet."
 					},
 					"response": []
+				},
+				{
+					"name": "GET /search?user=____/ - return list of pets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/pets/search?user=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"search"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "admin",
+									"description": "Owner user."
+								}
+							]
+						},
+						"description": "Endpoint for reading Pets data by owner. Passing as a parameter the owner user, retrieves the list of pets owned by that user."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /search?user=____/ - return missing parameter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/pets/search",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"search"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "admin",
+									"description": "Owner user.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Endpoint for reading Pets data by owner. Passing as a parameter the owner user, retrieves the list of pets owned by that user."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /search?user=____/ - return no pets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/pets/search?user=gabriel",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"search"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "gabriel",
+									"description": "Owner user."
+								}
+							]
+						},
+						"description": "Endpoint for reading Pets data by owner. Passing as a parameter the owner user, retrieves the list of pets owned by that user."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /search?user=____/ - assert invalid owner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/pets/search?user=invalid_user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pets",
+								"search"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "invalid_user",
+									"description": "Owner user."
+								}
+							]
+						},
+						"description": "Endpoint for reading Pets data by owner. Passing as a parameter the owner user, retrieves the list of pets owned by that user."
+					},
+					"response": []
 				}
 			],
 			"description": "Requests related to the /pets/ endpoint.",

@@ -106,4 +106,37 @@ controller.updatePet = async function(pet_data, pet_name_old){
     return {is_updated, error_message};
 } 
 
+controller.getPets = async function(user_owner){
+    let is_listed = false;
+    let error_message;
+    let list;
+
+    // Connect to the db
+    const db = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+        .catch(err => { console.log(err); });
+        
+    if (!db) {
+        throw "Erro - objeto de conexão nulo.";
+    }
+
+    try{
+            const db_petshop = db.db("petshop");
+            let coll = db_petshop.collection("pets");
+            await coll.find({'owner': user_owner}, {"_id": 0}).toArray()
+                .then(result => {
+                    console.log("Successfully retrieved list of " + user_owner + "'s pets. (" + result.length + " pets)"); 
+                    is_listed = true; list = result;
+                })
+                .catch(err => { db.close(); console.log(err); is_listed = false; error_message = err});
+    }
+    catch(err){
+        console.log(err);
+    }
+    finally{
+        db.close();
+    }
+
+    return {is_listed, error_message, list};
+}
+
 module.exports = controller;
