@@ -9,17 +9,19 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatCardModule} from '@angular/material/card';
 
 
 import { PetsComponent } from './pets/pets.component';
 import { DialogAddPetComponent } from './dialogs/dialog-add-pet/dialog-add-pet.component';
 import { PetsService } from './pets.service';
 import { DialogUpdatePetComponent } from './dialogs/dialog-update-pet/dialog-update-pet.component';
+import { DialogDeletePetComponent } from './dialogs/dialog-delete-pet/dialog-delete-pet.component';
 
 
 
 @NgModule({
-  declarations: [PetsComponent, DialogAddPetComponent, DialogUpdatePetComponent],
+  declarations: [PetsComponent, DialogAddPetComponent, DialogUpdatePetComponent, DialogDeletePetComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -31,7 +33,8 @@ import { DialogUpdatePetComponent } from './dialogs/dialog-update-pet/dialog-upd
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   exports: [
     PetsComponent

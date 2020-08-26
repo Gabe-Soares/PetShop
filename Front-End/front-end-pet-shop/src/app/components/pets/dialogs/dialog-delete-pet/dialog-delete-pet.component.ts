@@ -4,29 +4,23 @@ import { Pet } from 'src/app/models/PetModel';
 import { PetsService } from '../../pets.service';
 
 @Component({
-  selector: 'app-dialog-update-pet',
-  templateUrl: './dialog-update-pet.component.html',
-  styleUrls: ['./dialog-update-pet.component.scss']
+  selector: 'app-dialog-delete-pet',
+  templateUrl: './dialog-delete-pet.component.html',
+  styleUrls: ['./dialog-delete-pet.component.scss']
 })
-export class DialogUpdatePetComponent implements OnInit {
+export class DialogDeletePetComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Pet,
   private petsService: PetsService,
-  public dialogRef: MatDialogRef<any>) { 
-  }
-  petUpdate: Pet;
+  public dialogRef: MatDialogRef<any>) { }
+
   ngOnInit(): void {
-    this.petUpdate = this.data;
+    console.log(this.data)
   }
-  updatePet(){
-    this.petsService.updatePet({
-      pet_name_old: this.petUpdate.Name, 
-			name: this.data.Name, 
-			owner: this.data.Owner, 
-			species: this.data.Species, 
-			race: this.data.Race, 
-			age: this.data.Age, 
-			obs: this.data.Obs
+  deletePet(){
+    this.petsService.deletePet({
+      name: this.data.Name, 
+      owner: this.data.Owner
     }).subscribe(
       data => {
         console.log(data)
@@ -38,4 +32,5 @@ export class DialogUpdatePetComponent implements OnInit {
       }
     )
   }
-}
+  
+  }

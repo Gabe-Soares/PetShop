@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { Pet } from '../../../models/PetModel';
 import { LoginService } from '../../login/login.service';
 import { DialogAddPetComponent } from '../dialogs/dialog-add-pet/dialog-add-pet.component';
+import { DialogDeletePetComponent } from '../dialogs/dialog-delete-pet/dialog-delete-pet.component';
 import { DialogUpdatePetComponent } from '../dialogs/dialog-update-pet/dialog-update-pet.component';
 import { PetsService } from '../pets.service';
 
@@ -51,6 +52,29 @@ export class PetsComponent implements OnInit {
       })
     )
   }
+  
+  openDialogDeletPet(row){
+    console.log(row);
+    const dialogRef = this.dialog.open(DialogDeletePetComponent, {
+      data: {
+        Name: row.name,
+        Species: row.species,
+        Race: row.race,
+        Age: row.age,
+        Obs: row.obs,
+        Owner: this.userService.user.user
+      }
+    });
+
+    this.subcription.push(dialogRef.afterClosed().subscribe(result => {
+      if(!result){
+        this.openSnackBar('Failed', 'close', result);
+      }else{
+        this.openSnackBar('Pet deleted successfully', 'close', result);
+        this.initTable();
+      }
+    }));
+  }
 
   openDialogAddPet(){
     const dialogRef = this.dialog.open(DialogAddPetComponent);
@@ -66,7 +90,6 @@ export class PetsComponent implements OnInit {
   }
 
   openDialogUpdatePet(row){
-    console.log(row);
     const dialogRef = this.dialog.open(DialogUpdatePetComponent, {
       data: {
         Name: row.name,
@@ -80,9 +103,9 @@ export class PetsComponent implements OnInit {
 
     this.subcription.push(dialogRef.afterClosed().subscribe(result => {
       if(!result){
-        this.openSnackBar('Pet not registred', 'close', result);
+        this.openSnackBar('Pet update failed', 'close', result);
       }else{
-        this.openSnackBar('Pet successfully registered', 'close', result);
+        this.openSnackBar('Pet successfully update', 'close', result);
         this.initTable();
       }
     }));

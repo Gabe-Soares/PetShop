@@ -19,9 +19,12 @@ export class PetsService {
       params: {
         user: owner
       }
-    })
+    });
   }
   updatePet(pet: any){
-    return this.http.post(`${URL}/update`, pet)
+    return this.http.post(`${URL}/update`, pet);
+  }
+  deletePet(pet: any){
+    return this.http.post(`${URL}/remove`, pet);
   }
 }
