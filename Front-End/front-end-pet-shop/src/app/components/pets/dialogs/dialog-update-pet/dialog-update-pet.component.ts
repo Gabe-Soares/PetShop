@@ -14,13 +14,13 @@ export class DialogUpdatePetComponent implements OnInit {
   private petsService: PetsService,
   public dialogRef: MatDialogRef<any>) { 
   }
-  petUpdate: Pet;
+  petNameOld: string;
   ngOnInit(): void {
-    this.petUpdate = this.data;
+    this.petNameOld = this.data.Name;
   }
   updatePet(){
     this.petsService.updatePet({
-      pet_name_old: this.petUpdate.Name, 
+      pet_name_old: this.petNameOld, 
 			name: this.data.Name, 
 			owner: this.data.Owner, 
 			species: this.data.Species, 
