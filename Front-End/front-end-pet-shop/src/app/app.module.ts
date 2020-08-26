@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './components/home/home.module';
 import { SharedModule } from './components/shared/shared.module';
 import { LoginModule } from './components/login/login.module';
+import { PetsModule } from './components/pets/pets.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoginModule } from './components/login/login.module';
     BrowserAnimationsModule,
     HomeModule,
     LoginModule,
-    SharedModule
+    SharedModule,
+    PetsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

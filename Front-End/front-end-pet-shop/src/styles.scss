@@ -16,7 +16,7 @@ $front-end-pet-shop-primary: mat-palette($mat-red);
 $front-end-pet-shop-accent: mat-palette($mat-red, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$front-end-pet-shop-warn: mat-palette($mat-red);
+$front-end-pet-shop-warn: mat-palette($mat-blue);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $front-end-pet-shop-theme: mat-light-theme($front-end-pet-shop-primary, $front-end-pet-shop-accent, $front-end-pet-shop-warn);

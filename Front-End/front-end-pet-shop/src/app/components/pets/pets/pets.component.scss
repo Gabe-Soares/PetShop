@@ -1,0 +1,27 @@
+// .addPet{
+//     margin-bottom: 5rem;
+// }
+// .myPets{
+//     margin-top: 5rem;
+// }
+.container-content{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+span{
+    font-size: 1.5rem;
+}
+
+table.mat-table{
+    width: 100%;
+}
+
+.material-icons{
+    cursor: pointer;
+    margin: 0.4rem;
+    transition: all .3s;
+}
+.material-icons:hover{
+    transform: scale(1.1);
+}
