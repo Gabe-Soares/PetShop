@@ -49,8 +49,8 @@ controller.removePet = async function(pet_name, pet_owner){
             let coll = db_petshop.collection("pets");
             await coll.deleteOne({"name": pet_name, "owner": pet_owner})
                 .then(result => {
-                    const { matchedCount, modifiedCount } = result;
-                    if(matchedCount && modifiedCount) {
+                    const { acknowledged, deletedCount } = result;
+                    if(deletedCount > 0) {
                         console.log("Successfully removed the pet " + pet_name + " to the owner " + pet_owner + "."); is_removed = true;
                     }
                     else{

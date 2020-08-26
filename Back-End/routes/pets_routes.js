@@ -61,7 +61,7 @@ module.exports = (function() {
             // Case the pet wasn't removed, because of any error.
             else{
                 res.status(500)
-                    .json({ mongo_error: result.error_message})
+                    .json({ Error: result.error_message})
                     .end();
             }
         }
