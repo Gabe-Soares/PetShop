@@ -1,17 +1,24 @@
 <div class="body">
   <div id="overlay">
     <div id="int-form">
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="login">
                   <h1 class="head-title">Login</h1>
                   <div class="inputsLogin">
-            <mat-form-field appearance="">
-                          <mat-label>Username</mat-label>
-                          <input matInput>
+                        <mat-form-field appearance="" style="margin-bottom: 1rem;">
+                          <mat-label >Username</mat-label>
+                          <input matInput formControlName="user" autofocus>
+                          <mat-error *ngIf="loginForm.controls['user'].errors">
+                            Username <strong>invalid</strong>
+                          </mat-error>
                         </mat-form-field>
-                        <mat-form-field appearance="">
-                          <mat-label>Password</mat-label>
-                          <input id="passwordInput" matInput type="password">
+                        <mat-form-field appearance="" >
+                          <mat-label style="float: left; max-width: 50%;">Enter your password</mat-label>
+                          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                          <mat-icon (click)="hide = !hide" style="cursor: pointer; float: right;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          <mat-error *ngIf="loginForm.controls['password'].errors || loginForm.controls['password'].touched">
+                            Password <strong>required</strong>
+                          </mat-error>
                         </mat-form-field>
                   </div>
           <button type="submit">Login</button>

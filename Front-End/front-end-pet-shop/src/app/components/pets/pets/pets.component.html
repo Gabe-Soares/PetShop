@@ -1,0 +1,72 @@
+<div class="row addPet">
+    <div class="col-12">
+        <div class="container container-content">
+            <div style="margin-left: auto; margin-right: auto;">
+                <button mat-button color="primary" (click)="openDialogAddPet()"> 
+                    <span style="margin-right: 2rem;">ADD PET</span>
+                    <span class="material-icons">
+                        add_circle_outline
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row myPets">
+    <div class="col-12">
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" #input>
+          </mat-form-field>
+          
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+          
+              <ng-container matColumnDef="Name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.name}}</td>
+              </ng-container>
+          
+              <ng-container matColumnDef="Specie">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Specie </th>
+                <td mat-cell *matCellDef="let row"> {{row.species}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="Age">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
+                <td mat-cell *matCellDef="let row"> {{row.age}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="Race">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Race </th>
+                <td mat-cell *matCellDef="let row"> {{row.race}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="Obs">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Obsevations </th>
+                <td mat-cell *matCellDef="let row"> {{row.obs}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Options">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Options </th>
+                <td mat-cell *matCellDef="let row"> 
+                  <span class="material-icons" title="Update" (click)="openDialogUpdatePet(row)">
+                    system_update_alt
+                    </span>
+                    <span class="material-icons" title="Delete" (click)="openDialogDeletPet(row)">
+                      delete
+                      </span>
+                </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, dataSource.data.length]"></mat-paginator>
+          </div>
+    </div>
+</div>

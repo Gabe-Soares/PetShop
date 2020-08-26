@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToolbarMenuComponent } from './toolbar-menu.component';
+import { DialogAddPetComponent } from './dialog-add-pet.component';
 
-describe('ToolbarMenuComponent', () => {
-  let component: ToolbarMenuComponent;
-  let fixture: ComponentFixture<ToolbarMenuComponent>;
+describe('DialogAddPetComponent', () => {
+  let component: DialogAddPetComponent;
+  let fixture: ComponentFixture<DialogAddPetComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToolbarMenuComponent ]
+      declarations: [ DialogAddPetComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToolbarMenuComponent);
+    fixture = TestBed.createComponent(DialogAddPetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

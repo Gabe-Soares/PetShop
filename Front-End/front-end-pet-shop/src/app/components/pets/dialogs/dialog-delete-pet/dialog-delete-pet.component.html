@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Delete Pet</h1>
+<div mat-dialog-content>
+    <h4>
+        Do you really want to delete this pet?
+    </h4>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" mat-dialog-close>CANCEL</button>
+    <button mat-stroked-button color="warn" (click)="deletePet()">DELETE</button>
+  </div>

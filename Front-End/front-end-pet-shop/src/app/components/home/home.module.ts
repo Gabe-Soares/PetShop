@@ -27,6 +27,7 @@ import { MenuContentComponent } from './menu-content/menu-content.component';
     MatExpansionModule,
     RouterModule
   ],
+  providers: [],
   exports: [
     HomeComponent
   ]
